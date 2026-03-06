@@ -1,29 +1,128 @@
+/* IMPORT FONT */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap'); /*FONT IMPORTED */
+
+/* PAGE STYLE */
+
 body{
-    text-align: center;
+    text-align:center;
+    font-family:'Orbitron', sans-serif;
+    background: linear-gradient(270deg,#1d2671,#c33764,#0f2027,#2c5364);
+    background-size:600% 600%;
+    animation:gradientMove 12s ease infinite;
+    height:100vh;
+    margin:0;
+    color:white;
 }
 
-.btn{
-    height: 200px;
-    width: 200px;
-    border-radius: 20%;
-    border: 10px solid black;
-    margin: 2.5rem;
+/* BACKGROUND ANIMATION */
+
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
 }
+
+/* TITLE */
+
+h1{
+    font-size:3rem;
+    margin-top:30px;
+    letter-spacing:4px;
+    text-shadow:0 0 10px #fff,0 0 20px #00f7ff;
+}
+
+h2{
+    margin-top:10px;
+    font-weight:400;
+    letter-spacing:2px;
+}
+
+/* BUTTON CONTAINER */
 
 .btn-container{
-    display: flex;
-    justify-content: center;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:50px;
 }
 
+/* BUTTON STYLE */
+
+.btn{
+    height:180px;
+    width:180px;
+    border-radius:20%;
+    border:8px solid rgba(255,255,255,0.8);
+    margin:20px;
+    cursor:pointer;
+    transition:transform 0.15s, box-shadow 0.15s;
+    box-shadow:0 0 10px rgba(255,255,255,0.3);
+}
+
+/* BUTTON HOVER */
+
+.btn:hover{
+    transform:scale(1.07);
+    box-shadow:0 0 25px white;
+}
+
+/* BUTTON COLORS */
+
 .yellow{
-    background-color: yellow;
+    background:linear-gradient(145deg,#ffd700,#ffae00);
+    box-shadow:0 0 20px #ffd700;
 }
+
 .red{
-    background-color: red;
+    background:linear-gradient(145deg,#ff4b2b,#ff416c);
+    box-shadow:0 0 20px #ff416c;
 }
+
 .green{
-    background-color: green;
+    background:linear-gradient(145deg,#56ab2f,#a8e063);
+    box-shadow:0 0 20px #00ff7f;
 }
+
 .purple{
-    background-color: purple;
+    background:linear-gradient(145deg,#7f00ff,#e100ff);
+    box-shadow:0 0 20px #d400ff;
+}
+
+/* GAME FLASH */
+
+.flash{
+    background:white;
+    box-shadow:0 0 35px white,0 0 70px white;
+    transform:scale(1.1);
+}
+
+/* USER FLASH */
+
+.userflash{
+    background:#00fff7;
+    box-shadow:0 0 35px #00fff7,0 0 70px #00fff7;
+    transform:scale(1.08);
+}
+
+/* GAME OVER EFFECT */
+
+body.game-over{
+    background:#ff0000;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width:700px){
+
+.btn{
+    height:130px;
+    width:130px;
+    margin:15px;
+}
+
+h1{
+    font-size:2rem;
+}
+
 }
