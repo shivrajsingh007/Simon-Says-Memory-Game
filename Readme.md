@@ -1,84 +1,150 @@
-# 🎮 Simon Says Game
+# 🎮 Simon Says — Upgraded Edition
 
-A fun and interactive **Simon Says memory game** built using **HTML, CSS, and JavaScript**.
-The game challenges players to remember and repeat an increasingly long sequence of colors. Each level adds a new step to the pattern, testing the player's memory and focus.
+A production-grade Simon Says memory game built with **React**, **Node.js/Express**, and **MongoDB**.
 
----
+## ✨ Features
 
-## 🚀 Features
-
-* 🧠 Memory-based gameplay
-* 🎨 Colorful interactive buttons
-* 📈 Increasing difficulty with each level
-* ⚡ Smooth animations and visual feedback
-* 🔊 Button flash effects when clicked or when the game shows the sequence
-* 📱 Simple and responsive interface
-
----
-
-## 🛠️ Built With
-
-* **HTML5** – Structure of the game
-* **CSS3** – Styling, colors, and animations
-* **JavaScript (Vanilla JS)** – Game logic and interactivity
+- 🧠 Memory gameplay with increasing difficulty
+- 🎨 3 difficulty modes: Easy, Normal, Hard
+- 🎵 Dynamic Web Audio API sound engine (no sound files needed)
+- 🌌 Animated particle background
+- ⏸ Pause / Resume support
+- 🔥 Combo multiplier system
+- 🏆 Global leaderboard saved to MongoDB
+- 🏅 Personal best tracking (localStorage)
+- ⌨️ Keyboard support (keys 1–4)
+- 📱 Fully responsive design
 
 ---
 
-## 🎯 How the Game Works
-
-1. Press any key to start the game.
-2. The game will highlight a random color.
-3. Remember the color sequence.
-4. Click the colors in the same order.
-5. Each level adds one more color to the sequence.
-6. If you click the wrong color, the game ends.
-
----
-
-## 📂 Project Structure
+## 🗂️ Project Structure
 
 ```
-Simons-Say-Game/
-│
-├── index.html
-├── style.css
-├── script.js
-└── README.md
+simon-game/
+├── client/           ← React frontend
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       ├── context/
+│       ├── hooks/
+│       ├── api.js
+│       └── App.js
+└── server/           ← Node.js + Express + MongoDB backend
+    ├── models/
+    ├── routes/
+    └── index.js
 ```
 
 ---
 
-## ▶️ How to Run the Project
+## 🚀 How to Run
 
-1. Clone the repository
-
-```
-git clone https://github.com/your-username/your-repository-name.git
-```
-
-2. Open the project folder.
-
-3. Run the game by opening **index.html** in your browser.
+### Prerequisites
+- **Node.js** v16+ ([download](https://nodejs.org))
+- **MongoDB** running locally OR a free [MongoDB Atlas](https://www.mongodb.com/atlas) cluster
 
 ---
 
-## 💡 Future Improvements
+### Step 1 — Start MongoDB
 
-* 🔊 Add sound effects for each button
-* 🏆 High score tracking
-* 🌙 Dark mode theme
-* 📱 Improved mobile responsiveness
+**Option A: Local MongoDB**
+```bash
+mongod
+```
+
+**Option B: MongoDB Atlas (cloud, free)**
+1. Go to https://www.mongodb.com/atlas and create a free account
+2. Create a free cluster
+3. Get your connection string (looks like `mongodb+srv://user:pass@cluster.mongodb.net/simon-game`)
 
 ---
 
-## 📜 License
+### Step 2 — Configure the Server
 
-This project is licensed under the **MIT License**.
+```bash
+cd server
+cp .env.example .env
+```
+
+Edit `.env`:
+```
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/simon-game
+CLIENT_URL=http://localhost:3000
+```
+
+Replace `MONGO_URI` with your Atlas connection string if using cloud.
+
+---
+
+### Step 3 — Install & Run the Server
+
+```bash
+cd server
+npm install
+npm start
+```
+
+Server runs at: http://localhost:5000  
+Health check: http://localhost:5000/api/health
+
+> **Note:** The game works even without MongoDB — scores just won't persist.
+
+---
+
+### Step 4 — Install & Run the React App
+
+Open a **new terminal**:
+
+```bash
+cd client
+npm install
+npm start
+```
+
+React app opens at: http://localhost:3000
+
+---
+
+## 🎮 How to Play
+
+1. Enter your name and choose a difficulty
+2. Watch the button sequence carefully
+3. Click the buttons in the same order
+4. Each level adds one more step
+5. Wrong input = game over, score is saved!
+
+**Keyboard shortcuts:**
+- `1` = Red button
+- `2` = Yellow button
+- `3` = Green button
+- `4` = Blue button
+
+---
+
+## 📡 API Endpoints
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/api/health` | Server status |
+| POST | `/api/scores` | Save a score |
+| GET | `/api/scores/leaderboard?difficulty=normal` | Get top 10 scores |
+| GET | `/api/scores/top` | Get all-time top 20 |
+
+---
+
+## 🔧 Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 18, CSS Modules |
+| Audio | Web Audio API (no files!) |
+| Backend | Node.js, Express 4 |
+| Database | MongoDB, Mongoose |
+| Fonts | Exo 2, Share Tech Mono |
 
 ---
 
 ## 👨‍💻 Author
 
-**Shivraj Singh**
-
-If you like this project, consider giving it a ⭐ on GitHub!
+Built on top of the original Simon Says by **Shivraj Singh**, upgraded to full-stack.

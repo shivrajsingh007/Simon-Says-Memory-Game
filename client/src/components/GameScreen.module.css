@@ -1,0 +1,284 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+  transition: background 0.1s;
+}
+
+.errorFlash {
+  animation: redFlash 0.5s ease-out;
+}
+
+@keyframes redFlash {
+  0% { background: rgba(255, 51, 102, 0.4); }
+  100% { background: transparent; }
+}
+
+/* HUD */
+.hud {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 560px;
+  gap: 16px;
+}
+
+.hudBlock {
+  min-width: 80px;
+}
+
+.hudLabel {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 4px;
+  color: rgba(232, 232, 255, 0.4);
+  margin-bottom: 2px;
+}
+
+.hudValue {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #E8E8FF;
+  line-height: 1;
+}
+
+.hudCenter {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.status {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: rgba(232, 232, 255, 0.7);
+  min-height: 1.2em;
+}
+
+.progressBar {
+  width: 120px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #00BFFF, #BF00FF);
+  border-radius: 2px;
+  transition: width 0.15s ease;
+  box-shadow: 0 0 8px #00BFFF;
+}
+
+/* COMBO BADGE */
+.comboBadge {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: #FFD700;
+  text-shadow: 0 0 15px #FFD700;
+  animation: comboAppear 0.3s ease-out;
+}
+
+@keyframes comboAppear {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* BUTTON GRID */
+.btnGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 8px;
+}
+
+.btn {
+  width: clamp(130px, 25vw, 200px);
+  height: clamp(130px, 25vw, 200px);
+  border-radius: 20px;
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--btn-color) 70%, #000 30%),
+    color-mix(in srgb, var(--btn-color) 40%, #000 60%)
+  );
+  border: 2px solid color-mix(in srgb, var(--btn-color) 60%, transparent 40%);
+  box-shadow: 0 0 20px var(--btn-glow), inset 0 1px 0 rgba(255,255,255,0.15);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.12s, box-shadow 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover:not(.btnDisabled) {
+  transform: scale(1.04);
+  box-shadow: 0 0 40px var(--btn-glow), 0 0 80px var(--btn-glow), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.btn:active:not(.btnDisabled) {
+  transform: scale(0.96);
+}
+
+.btnDisabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+.btnActive {
+  transform: scale(1.08) !important;
+  box-shadow: 0 0 60px var(--btn-glow), 0 0 120px var(--btn-glow), inset 0 1px 0 rgba(255,255,255,0.3) !important;
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--btn-color) 90%, #fff 10%),
+    var(--btn-color)
+  ) !important;
+}
+
+.btnLabel {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 1;
+  user-select: none;
+}
+
+.btnShine {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 100%);
+  border-radius: 18px 18px 0 0;
+  pointer-events: none;
+}
+
+.btnPulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  animation: btnPulseAnim 0.3s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes btnPulseAnim {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.2); }
+}
+
+/* CONTROLS */
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ctrlBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 18px;
+  color: rgba(232, 232, 255, 0.6);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ctrlBtn:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #E8E8FF;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ctrlBtn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.ctrlBtnDanger:hover:not(:disabled) {
+  border-color: rgba(255, 51, 102, 0.4) !important;
+  color: #FF3366 !important;
+  background: rgba(255, 51, 102, 0.06) !important;
+}
+
+/* PAUSE OVERLAY */
+.pauseOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 16, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.pauseCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 48px 64px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.pauseTitle {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 8px;
+  color: #E8E8FF;
+}
+
+.pauseScore {
+  font-family: 'Share Tech Mono', monospace;
+  color: rgba(232, 232, 255, 0.5);
+  letter-spacing: 2px;
+}
+
+.resumeBtn {
+  background: linear-gradient(135deg, #00BFFF, #BF00FF);
+  border: none;
+  border-radius: 10px;
+  padding: 14px 40px;
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
+}
+
+.resumeBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 50px rgba(0, 191, 255, 0.5);
+}
+
+@media (max-width: 480px) {
+  .btn {
+    width: clamp(110px, 40vw, 160px);
+    height: clamp(110px, 40vw, 160px);
+  }
+  .hudValue { font-size: 1.6rem; }
+}

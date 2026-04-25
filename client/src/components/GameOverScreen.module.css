@@ -1,0 +1,194 @@
+.screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 52px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 440px;
+  width: 100%;
+  backdrop-filter: blur(12px);
+  animation: cardIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: scale(0.8) translateY(30px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.gameOverText {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: 8px;
+  color: #FF3366;
+  text-shadow: 0 0 20px #FF336688, 0 0 60px #FF336644;
+}
+
+.newHighScore {
+  background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05));
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 10px;
+  padding: 8px 24px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #FFD700;
+  text-shadow: 0 0 10px #FFD700;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px rgba(255,215,0,0.2); }
+  to   { box-shadow: 0 0 30px rgba(255,215,0,0.4); }
+}
+
+.scoreSection {
+  text-align: center;
+}
+
+.scoreLabel {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 5px;
+  color: rgba(232, 232, 255, 0.4);
+  margin-bottom: 6px;
+}
+
+.scoreValue {
+  font-size: 5rem;
+  font-weight: 900;
+  color: #E8E8FF;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(0,191,255,0.3);
+}
+
+.rankBadge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: rgba(0, 191, 255, 0.8);
+  background: rgba(0, 191, 255, 0.08);
+  border: 1px solid rgba(0, 191, 255, 0.2);
+  border-radius: 8px;
+  padding: 6px 20px;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.metaLabel {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  color: rgba(232, 232, 255, 0.3);
+}
+
+.metaVal {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(232, 232, 255, 0.7);
+  letter-spacing: 1px;
+}
+
+.metaDivider {
+  color: rgba(255,255,255,0.15);
+  font-size: 1.2rem;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.restartBtn {
+  background: linear-gradient(135deg, #00BFFF 0%, #BF00FF 100%);
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.25);
+}
+
+.restartBtn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 50px rgba(0, 191, 255, 0.5);
+}
+
+.menuBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 12px;
+  color: rgba(232, 232, 255, 0.5);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menuBtn:hover {
+  border-color: rgba(255,255,255,0.25);
+  color: #E8E8FF;
+  background: rgba(255,255,255,0.05);
+}
+
+/* CONFETTI */
+.confettiContainer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 200;
+}
+
+.confettiPiece {
+  position: absolute;
+  top: -20px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+@media (max-width: 480px) {
+  .card { padding: 40px 28px; }
+  .gameOverText { font-size: 2rem; letter-spacing: 5px; }
+  .scoreValue { font-size: 4rem; }
+}
